@@ -1,26 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
     <style>
-        p{
+        p {
             font-size: 30px;
             text-decoration: underline;
             color: blue;
         }
+
+        .myclass {
+            background-color: crimson;
+            color: white;
+        }
+
+        #myid {
+            color: green;
+            text-align: center;
+            font-size: 60px;
+        }
+
+        h6 {
+            font-size: 40px;
+            color: blue !important;
+        }
+
+        .heading {
+            color: red;
+        }
+
+        #myid2 {
+            color: green;
+        }
     </style>
 
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-    <h1 style="color: red; font-size: 50px;" >Inline CSS is used style individual element only</h1>
+    <h1 style="color: red; font-size: 50px;">Inline CSS is used style individual element only</h1>
 
     <p>Internal CSS is used to style multiple tags at once</p>
 
-    <p>Name Selectors are used to select element by their tag name</p>
+    <p class="myclass">Name Selectors are used to select element by their tag name</p>
+
+    <h2 class="myclass">Class Selectors are used to select element by their class name</h2>
+
+    <h3 id="myid">Id Selectors are used to select element by their id name</h3>
+
+    <h6 class="heading" id="myid2" style="color: violet;">Priority of Selectors : ID > Class > Name </h6>
+
+    <button class="btn">Submit Here</button>
 
 </body>
+
 </html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic"
+        rel="stylesheet" />
+
+    <style>
+        * {
+            font-family: Roboto;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            width: 20%;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 3px 3px 5px 0 #00000080;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* background-color: skyblue; */
+            background-image: url('https://wallpapers.com/images/hd/succulent-plant-white-minimalist-v7z504p3uwyea9ih.jpg');
+            background-size: cover;
+        }
+
+        .form-title {
+            text-align: center;
+            font-family: Roboto;
+            font-size: 30px;
+        }
+
+        .text-input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid blueviolet;
+        }
+
+        .btn {
+            display: block;
+            background-color: blueviolet;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .link {
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: blueviolet;
+            font-size: 15px;
+        }
+
+        .link:hover {
+            color: #3d1364;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h3 class="form-title">Login Form</h3>
+
+        <form>
+            <label>Email Address</label>
+            <input type="email" class="text-input">
+
+            <label>Password</label>
+            <input type="password" class="text-input">
+
+            <a href="#" class="link">Forgot Password</a>
+
+            <button class="btn">Submit</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
