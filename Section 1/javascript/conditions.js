@@ -18,6 +18,7 @@ if (age >= 18) {
     // pi = 3.14;
 
     console.log('Eligible for DL');
+    
 } else {
     console.log('Not eligible for DL');
 }
