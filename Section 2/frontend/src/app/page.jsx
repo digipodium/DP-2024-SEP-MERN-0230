@@ -1,7 +1,7 @@
 import React from 'react'
+import Card from '@/components/Card';
 
 const Home = () => {
-
 
   return (
     <div>
@@ -13,6 +13,27 @@ const Home = () => {
       <input type="text" />
       <br />
       <hr />
+
+      <button className='global-btn'>Home button</button>
+      <button className="contactBtn">Using local class</button>
+
+      <img src="/next.svg" />
+
+      <div className="w-1/2 m-10">
+        <Card
+          title="Card 1 Title"
+          description="Card 1 Description" />
+        <Card
+          title="Card 2 Title"
+          description="Card 2 Description" />
+        <Card
+          title="Card 3 Title"
+          description="Card 3 Description" />
+        <Card
+          title="Card 4 Title"
+          description="Card 4 Description" />
+      </div>
+
     </div>
   )
 }
