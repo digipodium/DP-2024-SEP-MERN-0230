@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '@/components/Card';
+import MyButton from '@/components/MyButton';
 
 const Home = () => {
 
@@ -32,6 +33,11 @@ const Home = () => {
         <Card
           title="Card 4 Title"
           description="Card 4 Description" />
+
+        <MyButton>button 1</MyButton>
+        <MyButton>click me</MyButton>
+        <MyButton>explore</MyButton>
+        <MyButton>djfhgj</MyButton>
       </div>
 
     </div>
