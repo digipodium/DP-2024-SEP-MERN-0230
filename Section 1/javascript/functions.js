@@ -19,6 +19,7 @@ const result = getAvg(78, 89, 90);
 
 console.log(result);
 
+
 const factorial = (n) => {
 
     let f = 1;

@@ -6,24 +6,38 @@ const TodoList = () => {
     // let count = 0;
 
     // const [count, setCount] = useState(0);
-
     const [taskList, setTaskList] = useState([]);
 
     const addNewTask = (e) => {
 
         if (e.code === 'Enter') {
 
-            if(!e.target.value){
+            if (!e.target.value.trim(' ')) {
                 alert('Please enter a task to add');
                 return;
             }
 
-            const newTask = { text : e.target.value, completed: false };
+            const newTask = { text: e.target.value, completed: false };
 
-            setTaskList( [ newTask, ...taskList ] );
+            setTaskList([...taskList, newTask]);
 
             e.target.value = '';
         }
+    }
+
+    const deleteTask = (index) => {
+        console.log(index);
+
+        const temp = taskList;
+        temp.splice(index, 1);
+        setTaskList([...temp]);
+    };
+
+    const updateTask = (index) => {
+
+        const temp = taskList;
+        temp[index].completed = !temp[index].completed;
+        setTaskList([...temp]);
     }
 
     return (
@@ -31,6 +45,29 @@ const TodoList = () => {
 
             <div className='container mx-auto rounded-lg bg-white border '>
 
+                
+                <div className='p-4 h-[70vh]'>
+                    {
+                        taskList.map((task, index) => {
+                            return <div key={index} className='rounded mb-4 p-4 border shadow'>
+                                
+                                {/* { task.completed ? (
+                                    <p className='bg-green-600 text-white w-fit rounded-full px-2'>Completed</p>
+                                ) : (
+                                    <p className='bg-yellow-600 text-white w-fit rounded-full px-2'>Pending</p>
+                                )} */}
+                                
+                                <p className='text-xl'>{task.text}</p>
+
+                                {/* <div className='mt-5 flex gap-5'>
+                                    <button onClick={() => { deleteTask(index) }} className='bg-red-500 text-white rounded-full px-3 py-1'>Delete</button>
+                                    <button onClick={() => { updateTask(index) }} className='bg-blue-500 text-white rounded-full px-3 py-1'>Complete</button>
+                                </div> */}
+
+                            </div>
+                        })
+                    }
+                </div>
                 <div className='p-4 border-b-2'>
                     {/* <h1 className='text-3xl'>{count}</h1> */}
                     {/* <button onClick={() => { setCount(count+1); console.log(count); }} >add count</button> */}
@@ -39,21 +76,6 @@ const TodoList = () => {
                         placeholder='Enter a Task to add in your todolist' type="text"
                         className='px-3 py-2 rounded w-full bg-gray-200'
                     />
-                </div>
-                <div className='p-4'>
-                    {
-                        taskList.map((task, index) => {
-                            return <div key={index} className='rounded mb-4 p-4 border shadow'>
-                                <p className='text-xl'>{task.text}</p>
-                                
-                                <div className='mt-5 flex gap-5'>
-                                    <button className='bg-red-500 text-white rounded-full px-3 py-1'>Delete</button>
-                                    <button className='bg-blue-500 text-white rounded-full px-3 py-1'>Complete</button>
-                                </div>
-
-                            </div>
-                        })
-                    }
                 </div>
             </div>
 
