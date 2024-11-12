@@ -1,4 +1,5 @@
 'use client';
+import { IconCheck, IconLoader3 } from '@tabler/icons-react';
 import { useFormik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
@@ -9,6 +10,14 @@ const SignupSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Naam jaroori hai'),
   email: Yup.string().email('Invalid email').required('Required'),
+  password: Yup.string().required('Password is required')
+    .matches(/[a-z]/, 'lowercase letter is required')
+    .matches(/[A-Z]/, 'uppercase letter is required')
+    .matches(/[0-9]/, 'number is required')
+    .matches(/\W/, 'special character is required')
+    .min(8, 'minimum 8 charcters are required'),
+  confirmPassword: Yup.string().required('please confirm password')
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
 
 const Signup = () => {
@@ -21,8 +30,13 @@ const Signup = () => {
       password: '',
       confirmPassword: ''
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: (values, { resetForm }) => {
+
+      setTimeout(() => {
+        console.log(values);
+        resetForm();
+      }, 2000);
+
       // send values to backend
     },
     validationSchema: SignupSchema
@@ -177,7 +191,7 @@ const Signup = () => {
                   </label>
                   <div className="relative">
                     <input
-                      type="password"
+                      type="text"
                       id="password"
                       onChange={signupForm.handleChange}
                       value={signupForm.values.password}
@@ -198,9 +212,13 @@ const Signup = () => {
                       </svg>
                     </div>
                   </div>
-                  <p className="hidden text-xs text-red-600 mt-2" id="password-error">
-                    8+ characters required
-                  </p>
+                  {
+                    (signupForm.touched.password && signupForm.errors.password) && (
+                      <p className="text-xs text-red-600 mt-2" id="name-error">
+                        {signupForm.errors.password}
+                      </p>
+                    )
+                  }
                 </div>
                 {/* End Form Group */}
                 {/* Form Group */}
@@ -234,12 +252,13 @@ const Signup = () => {
                       </svg>
                     </div>
                   </div>
-                  <p
-                    className="hidden text-xs text-red-600 mt-2"
-                    id="confirm-password-error"
-                  >
-                    Password does not match the password
-                  </p>
+                  {
+                    (signupForm.touched.confirmPassword && signupForm.errors.confirmPassword) && (
+                      <p className="text-xs text-red-600 mt-2" id="name-error">
+                        {signupForm.errors.confirmPassword}
+                      </p>
+                    )
+                  }
                 </div>
                 {/* End Form Group */}
                 {/* Checkbox */}
@@ -267,9 +286,11 @@ const Signup = () => {
                 {/* End Checkbox */}
                 <button
                   type="submit"
-                  className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                  disabled={signupForm.isSubmitting}
+                  className="flex items-center gap-3 w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  Sign up
+                  { signupForm.isSubmitting ? ( <IconLoader3 className='animate-spin' /> ) : ( <IconCheck /> ) }
+                  Sign Up
                 </button>
               </div>
             </form>
