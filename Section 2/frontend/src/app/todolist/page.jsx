@@ -51,18 +51,18 @@ const TodoList = () => {
                         taskList.map((task, index) => {
                             return <div key={index} className='rounded mb-4 p-4 border shadow'>
                                 
-                                {/* { task.completed ? (
+                                { task.completed ? (
                                     <p className='bg-green-600 text-white w-fit rounded-full px-2'>Completed</p>
                                 ) : (
                                     <p className='bg-yellow-600 text-white w-fit rounded-full px-2'>Pending</p>
-                                )} */}
+                                )}
                                 
                                 <p className='text-xl'>{task.text}</p>
 
-                                {/* <div className='mt-5 flex gap-5'>
+                                <div className='mt-5 flex gap-5'>
                                     <button onClick={() => { deleteTask(index) }} className='bg-red-500 text-white rounded-full px-3 py-1'>Delete</button>
                                     <button onClick={() => { updateTask(index) }} className='bg-blue-500 text-white rounded-full px-3 py-1'>Complete</button>
-                                </div> */}
+                                </div>
 
                             </div>
                         })
