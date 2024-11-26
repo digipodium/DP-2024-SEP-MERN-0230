@@ -1,5 +1,6 @@
 'use client';
 import axios from 'axios'
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 
@@ -7,8 +8,16 @@ const ManageUser = () => {
 
     const [userList, setUserList] = useState([]);
 
+    const router = useRouter();
+
     const fetchUsers = async () => {
         const res = await axios.get('http://localhost:5000/user/getall')
+        
+        if(res.status === 403 || res.status === 401){
+            toast.error('Please Login to Continue');
+            router.push('/login');
+        }
+
         console.log(res.data);
         setUserList(res.data);
     }

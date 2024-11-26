@@ -1,6 +1,7 @@
 const express = require('express');
 const Model = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
+const verifyToken = require('../middlewares/verifyToken');
 require('dotenv').config();
 
 const router = express.Router();
@@ -19,7 +20,7 @@ router.post('/add', (req, res) => {
 });
 
 // getall
-router.get('/getall', (req, res) => {
+router.get('/getall', verifyToken, (req, res) => {
     Model.find()
         .then((result) => {
             res.status(200).json(result);
