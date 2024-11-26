@@ -1,6 +1,7 @@
 'use client';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 
 const ManageUser = () => {
 
@@ -16,6 +17,16 @@ const ManageUser = () => {
         fetchUsers();
     }, []);
 
+    const deleteUser = async (id) => {
+        const res = await axios.delete(`http://localhost:5000/user/delete/${id}`);
+        if (res.status === 200) {
+            toast.success('User deleted successfully');
+            fetchUsers();
+        } else {
+            toast.error('Failed to delete user');
+        }
+    }
+
     return (
         <div className='bg-gray-200 h-screen py-10'>
             <div className='container mx-auto'>
@@ -29,6 +40,7 @@ const ManageUser = () => {
                             <th className='p-2'>Email</th>
                             <th className='p-2'>City</th>
                             <th className='p-2'>Registered at</th>
+                            <th className='p-2' colSpan={2}></th>
                         </tr>
                     </thead>
                     <tbody className='bg-gray-400'>
@@ -40,6 +52,16 @@ const ManageUser = () => {
                                     <td className='p-2 border border-gray-300'>{user.email}</td>
                                     <td className='p-2 border border-gray-300'>{user.city}</td>
                                     <td className='p-2 border border-gray-300'>{user.createdAt}</td>
+                                    <td>
+                                        <button onClick={() => { deleteUser(user._id) }} className='bg-red-500 text-white px-3 py-1 rounded-full'>
+                                            Delete
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button className='bg-blue-500 text-white px-3 py-1 rounded-full'>
+                                            Update
+                                        </button>
+                                    </td>
                                 </tr>
                             })
                         }
