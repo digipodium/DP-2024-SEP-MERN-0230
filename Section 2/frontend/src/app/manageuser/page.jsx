@@ -7,19 +7,31 @@ import toast from 'react-hot-toast';
 const ManageUser = () => {
 
     const [userList, setUserList] = useState([]);
+    const token = localStorage.getItem('token');
 
     const router = useRouter();
 
-    const fetchUsers = async () => {
-        const res = await axios.get('http://localhost:5000/user/getall')
-        
-        if(res.status === 403 || res.status === 401){
-            toast.error('Please Login to Continue');
-            router.push('/login');
-        }
+    const fetchUsers = () => {
+        axios.get('http://localhost:5000/user/getall', {
+            headers: {
+                'x-auth-token': token
+            }
+        })
+            .then((result) => {
+                console.log(result.data);
+                setUserList(result.data);
+            }).catch((err) => {
+                console.log(err);
+                
+                if (err.response.status === 403 || err.response.status === 401) {
+                    toast.error('Please Login to Continue');
+                    router.push('/login');
+                }
+            });
 
-        console.log(res.data);
-        setUserList(res.data);
+
+
+
     }
 
     useEffect(() => {
